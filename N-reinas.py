@@ -17,13 +17,13 @@ def profundidad_primera_busqueda(
     ['. . Q . ', 'Q . . . ', '. . . Q ', '. Q . . ']
     """
 
-    # Get next row in the current board (possible_board) to fill it with a queen
+    # Get next row in the current board (posible_casilla) to fill it with a queen
     row = len(posible_casilla)
 
     # If row is equal to the size of the board it means there are a queen in each row in
-    # the current board (possible_board)
+    # the current board (posible_casilla)
     if row == n:
-        # We convert the variable possible_board that looks like this: [1, 3, 0, 2] to
+        # We convert the variable posible_casilla that looks like this: [1, 3, 0, 2] to
         # this: ['. Q . . ', '. . . Q ', 'Q . . . ', '. . Q . ']
         casillas.append([". " * i + "Q " + ". " * (n - 1 - i) for i in posible_casilla])
         return
@@ -32,7 +32,7 @@ def profundidad_primera_busqueda(
     for col in range(n):
 
         # We apply that we learned previously. First we check that in the current board
-        # (possible_board) there are not other same value because if there is it means
+        # (posible_casilla) there are not other same value because if there is it means
         # that there are a collision in vertical. Then we apply the two formulas we
         # learned before:
         #
@@ -40,7 +40,7 @@ def profundidad_primera_busqueda(
         # 135º: y + x = b or row + col = b.
         #
         # And we verify if the results of this two formulas not exist in their variables
-        # respectively.  (diagonal_right_collisions, diagonal_left_collisions)
+        # respectively.  (colisiones_diagonal_dcha, colisiones_diagonal_izq)
         #
         # If any or these are True it means there is a collision so we continue to the
         # next value in the for loop.
@@ -65,7 +65,7 @@ def n_reinas_solucion(n: int) -> None:
     casillas: list[list[str]] = []
     profundidad_primera_busqueda([], [], [], casillas, n)
 
-    # Print all the boards
+    # Print all the casillas
     for casilla in casillas:
         for column in casilla:
             print(column)
